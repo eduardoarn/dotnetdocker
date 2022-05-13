@@ -15,11 +15,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Compilar a imagem do Docker
-      run: docker build . --file Dockerfile --tag hub.heds.com.br/dotnetdocker:${{ steps.date.outputs.date }}
-      #run: docker build . --file Dockerfile --tag hub.heds.com.br/dotnetdocker:$(date +%s)
+      run: docker build . --file Dockerfile --tag hub.heds.com.br/dotnetdocker:$(date +%s)
+      #run: docker build . --file Dockerfile --tag hub.heds.com.br/dotnetdocker:${{ steps.date.outputs.date }}
       
     - name: Enviar para repositório de teste
-      run: docker push hub.heds.com.br/dotnetdocker:${{ steps.date.outputs.date }}
+      run: docker push hub.heds.com.br/dotnetdocker:$(date +%s)
 #      with:
 #        repository: hub.heds.com.br/dotnetdocker
         
