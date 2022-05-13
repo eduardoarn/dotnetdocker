@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Cria a imagem Docker 
 
 on:
   push:
@@ -14,8 +14,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag hub.heds.com.br/dotnetdocker:$(date +%s)
+    - name: Compilar a imagem do Docker
+      run: docker build . --file Dockerfile --tag hub.heds.com.br/dotnetdocker:${{ steps.date.outputs.date }}
+      #run: docker build . --file Dockerfile --tag hub.heds.com.br/dotnetdocker:$(date +%s)
+      
+    - name: Enviar para repositório de teste
+      run: docker push hub.heds.com.br/dotnetdocker:${{ steps.date.outputs.date }}
 #      with:
 #        repository: hub.heds.com.br/dotnetdocker
         
