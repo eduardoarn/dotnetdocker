@@ -13,17 +13,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:    
-    - uses: actions/checkout@v3
-    
-    - name: Criar as variáveis
-      run: export data=$(date +%s)      
-    
+    - uses: actions/checkout@v3    
     - name: Compilar a imagem do Docker
-      run: docker build . --file Dockerfile --tag hub.heds.com.br/dotnetdocker:$data      
+      run: export data=$(date +%s) && docker build . --file Dockerfile --tag hub.heds.com.br/dotnetdocker:$data && docker push hub.heds.com.br/dotnetdocker:$data
       
-    - name: Enviar para repositório de teste
-      run: docker push hub.heds.com.br/dotnetdocker:$data
-#      with:
-#        repository: hub.heds.com.br/dotnetdocker
+
         
       
